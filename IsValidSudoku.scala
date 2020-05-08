@@ -4,6 +4,10 @@ class IsValidSudoku {
         return arr.filter(_ != '.').distinct.size != arr.filter(_ != '.').size
     }
 
+    def getSurroundings(a: Int, b: Int) : List[(Int, Int)] = {
+        return (for (i <- a - 1 to a + 1; j <- b - 1 to b + 1) yield (i, j)).toList
+    }
+
     def isValidSudoku(board: Array[Array[Char]]) : Boolean = {
 
         // Row validation
@@ -25,6 +29,7 @@ class IsValidSudoku {
         }
 
         // Square validation
+        // Get the surroundings for pre-defined centre points of each of the 9 squares
         return true
     }
 }
