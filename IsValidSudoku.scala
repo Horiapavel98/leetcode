@@ -1,7 +1,7 @@
 class IsValidSudoku {
 
-    def containsDuplicates(arr: List[Char]) : Boolean = {
-        return arr.filter(_ != '.').distinct.size != arr.filter(_ != '.').size
+    def containsDuplicates(ls: List[Char]) : Boolean = {
+        return ls.filter(_ != '.').distinct.size != ls.filter(_ != '.').size
     }
 
     def getSurroundings(a: Int, b: Int) : List[(Int, Int)] = {
@@ -30,6 +30,13 @@ class IsValidSudoku {
 
         // Square validation
         // Get the surroundings for pre-defined centre points of each of the 9 squares
+        val centres: List[(Int, Int)] = List((1,1), (1,4), (1, 7), (4, 1), (4, 4), (4, 7), (7, 1), (7, 4), (7, 7))
+        for (centre <- centres) {
+            if(containsDuplicates((for (coords <- getSurroundings(centre._1, centre._2)) yield board(coords._1)(coords._2)).toList)) {
+                println("Not unique square...")
+                return false
+            }
+        }
         return true
     }
 }
@@ -55,6 +62,6 @@ object IsValidSudoku {
             Array('.','.','.','4','1','9','.','.','5'),
             Array('.','.','.','.','8','.','.','7','9')
             )
-        inst.isValidSudoku(board)
+        println(inst.isValidSudoku(board))
     }
 }
