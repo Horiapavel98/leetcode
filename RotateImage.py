@@ -2,7 +2,6 @@ from typing import List
 
 """
 Rotate matrix both clockwise and counterclockwise.
-
 Both operations are done in place.
 """
 class RotateImage:
