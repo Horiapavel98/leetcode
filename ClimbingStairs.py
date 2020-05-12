@@ -21,22 +21,27 @@ class ClimbingStairs:
     """
 
     def recursiveHelper(self, n: int, mem) -> int:
-        if n == 1:
-            mem.append(1)
-            return 1
-        elif n == 2:
-            mem.append(2)
-            return 2
-        elif n < len(mem):
-            return mem[n]
+        if n <= len(mem):
+            return mem[n - 1]
         else:
             tmp = self.recursiveHelper(n - 1, mem) + self.recursiveHelper(n - 2, mem)
             mem.append(tmp)
             return tmp
 
     def climbStairs(self, n: int) -> int:
-        return self.recursiveHelper(n, list())
+        return self.recursiveHelper(n, [1, 2])
 
+    # Faster variant: iteratively
+    def climbStairsIteratively(self, n: int) -> int:
+        if n==1:
+            return 1
+        elif n==2:
+            return 2
+        a,b = 1,2
+        for i in range(2, n):
+            temp = a+b
+            a, b = b, temp
+        return temp
 
 
 obj = ClimbingStairs()
