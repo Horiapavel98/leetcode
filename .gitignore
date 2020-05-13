@@ -1,2 +1,8 @@
+# Java/Scala
 *.class
+
+# Visual Studio Code
 .vscode/
+
+# C++
+*.exe
