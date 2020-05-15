@@ -28,6 +28,8 @@ public:
             }
         }
 
+        delete aux;
+
         return max_profit;
     }
 };
